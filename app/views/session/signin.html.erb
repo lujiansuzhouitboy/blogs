@@ -1,0 +1,38 @@
+<script type="text/javascript">
+	function auth(){
+		var name = document.getElementById("user_name").value;
+		if (name==""){
+			window.alert("用户名不能为空！")
+			return false
+		}
+		var password = document.getElementById("user_password").value;
+		if(password == ""){
+			window.alert("密码不能为空")
+			return false
+		}
+		return true
+	}
+	
+	
+</script>
+
+
+<div id="flash_message">
+	<%= flash[:notice ] %>
+</div>
+<%= form_for @user , :url => 'create' do |f| %>
+
+<table class="form_table">
+	<tr>
+		<td>用户名</td>
+		<td><%= f.text_field :name %></td>
+	</tr>
+	<tr>
+		<td>密码：</td>
+		<td><%= f.password_field :password %></td>
+	</tr>
+	<tr>
+		<td colspan="2"><%= f.submit "登陆"%></td>
+	</tr>
+</table>
+<% end %>

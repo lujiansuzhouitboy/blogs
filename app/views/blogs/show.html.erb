@@ -1,0 +1,57 @@
+<table class="form_table">
+	<tr>
+		<td>
+		<div id="show_blog_tile">
+			<%= @blog.title %>
+		</div></td>
+	</tr>
+	<tr>
+		<td>
+		<div id="show_blog_content">
+			<%= @blog.content %>
+
+			<% if sign_status == 1 || sign_status == 2 %>
+
+			<div id="caozuo">
+				<%= link_to '编辑', edit_blog_path(@blog) %> | <%= link_to '删除', updateblog_path(:id => @blog.id )%>
+			</div>
+	</tr>
+	<% end %></div></td>
+</table>
+
+<div id="comments">
+	<ul>
+		<% if @blog.nil? %>
+		暂时没有评论
+		<% elsif%>
+		<% @blog.comments.where("status = 0").each do |comment| %>
+		<li>
+			<div class="comment_info">
+				<span class="name"><span>网友</span><%= comment.user.name %>评论：</span>
+				<span class="content"><%= comment.content %></span>
+
+				<% if sign_status == 1 || sign_status == 2 %>
+				<span class="time"><span class="delete"><%= link_to '删除', updatecomment_path(:id => comment.id)%></span><%= comment.created_at %></span>
+				<% end %>
+			</div>
+		</li>
+		<% end %>
+	</ul>
+	<% else %>
+	<% end %>
+	<% if sign_status == 0 %>
+	<%= link_to '请先登陆','../session/signin'%>
+	<% elsif sign_status == 3 %>
+	<%= form_for @comment do |f|%>
+	<table>
+		<tr>
+			<td>
+			<div id="comment_content">
+				<%= f.text_area :content %>
+			</div></td><td><%= f.submit "评论"%>|<%= link_to "取消", '#'%></td>
+		</tr>
+	</table>
+	<% end %>
+	<% else %>
+	<% end %>
+</div>

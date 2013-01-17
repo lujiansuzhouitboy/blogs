@@ -1,0 +1,46 @@
+
+#header{
+ 	border:#CCCCCC 1px solid;
+	float:left;
+	width:1000px;
+}
+
+#logo_nav{
+	float:right;
+	margin:5px 10px;
+}
+.logo_nav{
+	float:left;
+	list-style: none;
+}
+.logo_nav span{
+	margin-left: 15px;
+}
+#blog_title h2{
+	font-size:40px;
+	margin:50px 50px;
+	float: left;
+}
+#nav{
+	float: left;
+	height:40px;
+}
+#nav nav ul li{
+	float:left;
+	width:100px;
+	list-style:none;
+	text-align:center;
+	
+}
+#nav nav ul li a{
+	text-decoration: none;
+	font:14pt bolder;
+	display:block;
+	width:100px;
+	height:40px;
+	background-color:#ddd;
+	
+}
+#nav nav ul li a:hover{
+	background-color:#EEEEEE;
+}

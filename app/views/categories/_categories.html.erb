@@ -1,0 +1,7 @@
+<nav>
+	<ul>
+		<% find_son_catogries.each do |category|%>
+		<li><%= link_to  category.name, root_path(:category_id => category.id) %></li>
+		<% end %>
+	</ul>
+</nav>

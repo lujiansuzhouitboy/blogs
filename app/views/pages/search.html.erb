@@ -1,0 +1,14 @@
+<ul>
+	<% @blogs.each do |blog|%>
+	<li>
+		<div id="blog">
+			<div id="blog_title">
+				<%= link_to blog.title, blog %>
+			</div>
+			<div id="blog_info">
+				<span><%= blog.created_at %></span>|<span><%= link_to blog.category.name, "#" %></span>|评论<%= blog.comments.where("status = 0").count %>
+			</div>
+		</div>
+	</li>
+	<% end %>
+</ul>

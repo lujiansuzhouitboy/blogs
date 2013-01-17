@@ -1,0 +1,60 @@
+<ul>
+	<% if session[:user].nil?%>
+	<% if @category_id.nil? %>
+	<% Blog.all.each do |blog|%>
+	<li>
+		<div id="blog">
+			<div id="blog_title">
+				<%= link_to blog.title, blog %>
+			</div>
+			<div id="blog_info">
+				<span><%= blog.created_at %></span>|<span><%= link_to blog.category.name, "#" %></span>|评论<%= blog.comments.where("status = 0").count %>
+			</div>
+		</div>
+	</li>
+	<%end%>
+	<%else%>
+	<% Blog.where("category_id = ?" ,@category_id).all.each do |blog|%>
+	<li>
+		<div id="blog">
+			<div id="blog_title">
+				<%= link_to blog.title, blog %>
+			</div>
+			<div id="blog_info">
+				<span><%= blog.created_at %></span>|<span><%= link_to blog.category.name, "#" %></span>|评论<%= blog.comments.where("status = 0").count %>
+			</div>
+		</div>
+	</li>
+	<%end%>
+	<%end%>
+	<%else%>
+	<% if @category_id.nil? %>
+	<% current_user.blogs.all.each do |blog|%>
+	<li>
+		<div id="blog">
+			<div id="blog_title">
+				<%= link_to blog.title, blog %>
+			</div>
+			<div id="blog_info">
+				<span><%= blog.created_at %></span>|<span><%= link_to blog.category.name, "#" %></span>|评论<%= blog.comments.where("status = 0").count %>
+			</div>
+		</div>
+	</li>
+	<% end %>
+	<%else%>
+	<% current_user.blogs.where("category_id = ?" ,@category_id).all.each do |blog|%>
+	<li>
+		<div id="blog">
+			<div id="blog_title">
+				<%= link_to blog.title, blog %>
+			</div>
+			<div id="blog_info">
+				<span><%= blog.created_at %></span>|<span><%= link_to blog.category.name, "#" %></span>|评论<%= blog.comments.where("status = 0").count %>
+			</div>
+		</div>
+	</li>
+	<%end%>
+	<%end%>
+	<%end%>
+
+</ul>

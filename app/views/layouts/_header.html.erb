@@ -1,0 +1,65 @@
+<header>
+	<div id="logo">
+		<span><%= text_field_tag 'info',nil,:placeholder => "Enter search term..." %><%= button_to_function 'Search   ',onclick='search()'%></span>
+		<div id="logo_nav">
+			<ul>
+				<% if sign_status == 0 %>
+				<li class="logo_nav">
+					<span><%= link_to "注册",new_user_path %></span>|
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "登陆",'../session/signin' %></span>|
+				</li>
+				<% elsif sign_status == 1 %>
+				<li class="logo_nav">
+					<span><%= link_to current_user.name,root_path(:my_id => current_user.id)%>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "添加博文",'../blogs/new' %>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "注销",'../session/signout' %>|</span>
+				</li>
+				<% elsif sign_status == 2 %>
+				<li class="logo_nav">
+					<span><%= link_to current_user.name,'#' %>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "用户管理",'../admin/index' %>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "分类管理",'../categories' %>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "注销",'../session/signout' %>|</span>
+				</li>
+				<% elsif sign_status == 3 %>
+				<li class="logo_nav">
+					<span><%= link_to current_user.name,root_path(:my_id => current_user.id) %>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "我的博文",root_path(:my_id => current_user.id) %>|</span>
+				</li>
+				<li class="logo_nav">
+					<span><%= link_to "注销",'../session/signout' %>|</span>
+				</li>
+				<% else %>
+				<% redirect_to 'public/404'%>
+				<% end %>
+				<li class="logo_nav">
+					<span><%= link_to "首页",root_path%></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="blog_title">
+		<% if session[:user].nil?%>
+			<h2>列表</h2>
+			<%else%>
+			<h2><%= current_user.name %>'s Blog</h2>
+		<% end %>
+	</div>
+	<div id="nav">
+		<%= render 'categories/categories' %>
+	</div>
+</header>
